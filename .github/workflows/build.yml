@@ -1,0 +1,33 @@
+name: Build example
+
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: typst-community/setup-typst@v4
+        with:
+          version: 'latest'
+
+      - name: Build example deck
+        run: typst compile --root . --font-path fonts template/main.typ example.pdf
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: example
+          path: example.pdf
+
+      - name: Release
+        uses: softprops/action-gh-release@v2
+        if: startsWith(github.ref, 'refs/tags/')
+        with:
+          files: example.pdf

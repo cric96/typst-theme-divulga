@@ -1,0 +1,17 @@
+[package]
+name = "divulga"
+version = "0.1.0"
+entrypoint = "lib.typ"
+authors = ["Gianluca Aguzzi <https://github.com/cric96>"]
+license = "Apache-2.0"
+description = "Big-type, image-friendly Touying theme for popular-science talks, with native diagrams and icons."
+repository = "https://github.com/cric96/typst-theme-divulga"
+keywords = ["presentation", "slides", "touying", "theme", "science communication"]
+categories = ["presentation"]
+compiler = "0.13.0"
+exclude = ["docs", "fonts", ".github", "Makefile"]
+
+[template]
+path = "template"
+entrypoint = "main.typ"
+thumbnail = "thumbnail.png"
